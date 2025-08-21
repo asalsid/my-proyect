@@ -1,68 +1,50 @@
-import {
-  AngularNodeAppEngine,
-  createNodeRequestHandler,
-  isMainModule,
-  writeResponseToNodeResponse,
-} from '@angular/ssr/node';
 import express from 'express';
-import { join } from 'node:path';
+import http from 'http';
+import path from 'path'; 
+import { Server as SocketIOServer } from 'socket.io';
 
-const browserDistFolder = join(import.meta.dirname, '../browser');
-
-const app = express();
-const angularApp = new AngularNodeAppEngine();
-
-/**
- * Example Express Rest API endpoints can be defined here.
- * Uncomment and define endpoints as necessary.
- *
- * Example:
- * ```ts
- * app.get('/api/{*splat}', (req, res) => {
- *   // Handle API request
- * });
- * ```
- */
-
-/**
- * Serve static files from /browser
- */
-app.use(
-  express.static(browserDistFolder, {
-    maxAge: '1y',
-    index: false,
-    redirect: false,
-  }),
-);
-
-/**
- * Handle all other requests by rendering the Angular application.
- */
-app.use((req, res, next) => {
-  angularApp
-    .handle(req)
-    .then((response) =>
-      response ? writeResponseToNodeResponse(response, res) : next(),
-    )
-    .catch(next);
-});
-
-/**
- * Start the server if this module is the main entry point.
- * The server listens on the port defined by the `PORT` environment variable, or defaults to 4000.
- */
-if (isMainModule(import.meta.url)) {
-  const port = process.env['PORT'] || 4000;
-  app.listen(port, (error) => {
-    if (error) {
-      throw error;
-    }
-
-    console.log(`Node Express server listening on http://localhost:${port}`);
-  });
+interface Position {
+  x: number;
+  y: number;
 }
 
-/**
- * Request handler used by the Angular CLI (for dev-server and during build) or Firebase Cloud Functions.
- */
-export const reqHandler = createNodeRequestHandler(app);
+interface MovePayload {
+  id: string;
+  x: number;
+  y: number;
+}
+
+const PORT = process.env['PORT'] || 3000;
+// const browserDistFolder = path.join(import.meta.dirname, '../dist/my-proyect/browser');
+
+const app = express();
+const server = http.createServer(app);
+const io = new SocketIOServer(server);
+
+let positions: Record<string, Position> = {};
+
+app.use(express.static('src'));
+
+io.on('connection', (socket: import('socket.io').Socket) => {
+  console.log('A user connected:', socket.id);
+  socket.emit('init', positions as Record<string, Position>);
+
+  socket.on('move', ({ id, x, y }: MovePayload) => {
+    positions[id] = { x, y };
+    socket.broadcast.emit('move', { id, x, y });
+  });
+
+  socket.on('disconnect', () => {
+    console.log('A user disconnected:', socket.id);
+  });
+});
+
+// app.use(express.static(browserDistFolder));
+
+// app.get(':splat', (req, res) => {
+//   res.sendFile(path.join(browserDistFolder, 'index.html'));
+// });
+
+server.listen(PORT, () => {
+  console.log(`Socket.IO server running on http://localhost:${PORT}`);
+});
