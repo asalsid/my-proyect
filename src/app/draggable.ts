@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, effect, signal } from '@angular/core';
+import { Component, Input, effect, signal } from '@angular/core';
 import { SocketService } from '../socket.service';
 import { NgStyle } from '@angular/common';
 
@@ -17,9 +17,7 @@ export class DraggableComponent {
   private dragging = false;
   private offset = { x: 0, y: 0 };
 
-  constructor(private socket: SocketService) {}
-
-  ngOnInit() {
+  constructor(private socket: SocketService) {
     effect(() => {
       const pos = this.socket.positions()[this.id];
       if (pos) {
