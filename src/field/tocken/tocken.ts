@@ -1,19 +1,18 @@
-import { Component, Input, effect, signal } from '@angular/core';
-import { SocketService } from '../socket.service';
+import { Component, effect, Input, signal } from '@angular/core';
+import { SocketService } from '../../socket.service';
 import { NgStyle } from '@angular/common';
 
 @Component({
-  selector: 'app-draggable',
+  selector: 'app-tocken',
   imports: [NgStyle],
-  template: `<div class="draggable" [ngStyle]="{left: x(), top: y()}" (mousedown)="startDrag($event)">
-    {{id}}
-  </div>`,
-  styles: [`.draggable { width:100px; height:100px; background:#ccc; position:absolute; cursor:move; }`]
+  templateUrl: './tocken.html',
+  styleUrl: './tocken.css'
 })
-export class DraggableComponent {
+export class Tocken {
   @Input() id!: string;
   x = signal('50px');
   y = signal('50px');
+  isTocken = signal(true);
   private dragging = false;
   private offset = { x: 0, y: 0 };
 

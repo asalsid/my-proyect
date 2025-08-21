@@ -1,10 +1,9 @@
 import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { DraggableComponent } from './draggable';
+import { Field } from '../field/field';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, DraggableComponent],
+  imports: [Field],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

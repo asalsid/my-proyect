@@ -1,0 +1,19 @@
+.screen {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  background-color: black;
+}
+
+.pitch {
+  position: absolute;
+  height: 100%;
+  max-width: 100%;
+  z-index: 1;
+}
+
+app-terrain {
+  z-index: 2;
+}
