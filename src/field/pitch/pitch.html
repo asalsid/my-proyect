@@ -1,4 +1,6 @@
 <div class='screen'>
     <img [src]='pitch().path' class='pitch' [alt]='pitch().alt'/>
-    <app-terrain></app-terrain>
+    @for (tocken of tockens(); track $index) {
+      <app-tocken [id]="$index" [tocken]='tocken'></app-tocken>
+    }
 </div>

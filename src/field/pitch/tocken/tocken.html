@@ -1,0 +1,6 @@
+<div class="tocken" 
+    [ngStyle]="{left: x() + 'px', top: y() + 'px'}"
+    [class.dragging]="dragging()"
+    (mousedown)="startDrag($event)">
+    <img [src]="tocken().path" [alt]="tocken().alt" draggable="false" />
+</div>

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Terrain } from './terrain';
+import { AddTocken } from './addTocken';
 
-describe('Terrain', () => {
-  let component: Terrain;
-  let fixture: ComponentFixture<Terrain>;
+describe('AddTocken', () => {
+  let component: AddTocken;
+  let fixture: ComponentFixture<AddTocken>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Terrain]
+      imports: [AddTocken]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(Terrain);
+    fixture = TestBed.createComponent(AddTocken);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

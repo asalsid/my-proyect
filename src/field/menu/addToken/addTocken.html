@@ -1,0 +1,20 @@
+<div class="dialog-backdrop" (click)="closeDialog()"></div>
+<div class="dialog">
+  <h2>Select Tockens</h2>
+  <table>
+    @for (row of tockenRows; track $index) {
+      <tr>
+        @for (tocken of row; track $index) {
+          <td>
+            <div class="tocken-cell"
+              (click)="selectTocken(tocken)">
+              <img [src]="tocken.path" [alt]="tocken.alt" />
+              <span>{{ tocken.alt }}</span>
+            </div>
+          </td>
+        }
+      </tr>
+    }
+  </table>
+  <button (click)="closeDialog()">Confirm</button>
+</div>

@@ -1,12 +1,13 @@
-import { Component, signal } from '@angular/core';
-import { Terrain } from "./terrain/terrain";
+import { Component, input, signal, effect } from '@angular/core';
+import { Tocken, TockenComponent } from "./tocken/tocken";
 
 @Component({
   selector: 'app-pitch',
-  imports: [Terrain],
+  imports: [TockenComponent],
   templateUrl: './pitch.html',
   styleUrl: './pitch.css'
 })
 export class Pitch {
   pitch = signal({path: 'pitches/grass.jpg', alt: 'Grass Pitch'});
+  tockens = input<Tocken[]>([]);
 }

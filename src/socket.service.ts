@@ -4,7 +4,7 @@ import { io, Socket } from 'socket.io-client';
 @Injectable({ providedIn: 'root' })
 export class SocketService {
   private socket: Socket;
-  positions = signal<{ [id: string]: { x: string, y: string } }>({});
+  positions = signal<{ [id: number]: { x: number, y: number } }>({});
 
   constructor() {
     this.socket = io('http://localhost:3000');
@@ -14,7 +14,7 @@ export class SocketService {
     });
   }
 
-  moveComponent(id: string, x: string, y: string) {
+  moveComponent(id: number, x: number, y: number) {
     this.socket.emit('move', { id, x, y });
   }
 }
