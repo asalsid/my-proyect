@@ -5,12 +5,12 @@ import { AddTocken } from './menu/addToken/addTocken';
 import { Tocken } from './pitch/tocken/tocken';
 
 @Component({
-  selector: 'app-field',
+  selector: 'app-table',
   imports: [Pitch, Menu, AddTocken],
-  templateUrl: './field.html',
-  styleUrl: './field.css'
+  templateUrl: './table.html',
+  styleUrl: './table.css'
 })
-export class Field {
+export class Table {
   isAddTockenVisible = signal(false);
   tockens = signal<Tocken[]>([]);
 

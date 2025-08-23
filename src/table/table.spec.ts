@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Field } from './field';
+import { Table } from './table';
 
-describe('Field', () => {
-  let component: Field;
-  let fixture: ComponentFixture<Field>;
+describe('Table', () => {
+  let component: Table;
+  let fixture: ComponentFixture<Table>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Field]
+      imports: [Table]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(Field);
+    fixture = TestBed.createComponent(Table);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,0 +1,7 @@
+<div class="main">
+  <app-menu (isAddTockenVisible)="isAddTockenVisible.set($event)" />
+  @if (isAddTockenVisible()) {
+    <app-addTocken (visibility)="isAddTockenVisible.set($event)" (retrivingTockens)="onRetrivingTockens($event)" />
+  }
+  <app-pitch [tockens]="tockens()" />
+</div>
