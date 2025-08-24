@@ -8,7 +8,7 @@
           <td>
             <div class="tocken-cell"
               (click)="selectTocken(tocken)">
-              <img [src]="tocken.path" [alt]="tocken.alt" />
+              <img [ngSrc]="tocken.path" [alt]="tocken.alt" width="100" height="100"/>
               <span>{{ tocken.alt }}</span>
             </div>
           </td>

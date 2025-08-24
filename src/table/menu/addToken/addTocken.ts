@@ -1,28 +1,29 @@
 import { Component, output, signal } from '@angular/core';
+import { NgOptimizedImage } from '@angular/common';
 import { Tocken } from '../../pitch/tocken/tocken';
 
 @Component({
   selector: 'app-addTocken',
-  imports: [],
+  imports: [NgOptimizedImage],
   templateUrl: './addTocken.html',
   styleUrl: './addTocken.css'
 })
 export class AddTocken {
   tockens: Tocken[] = [{
-    path: 'terrain/barrier-1.png',
-    alt: 'Barrier 1',
+    path: 'widgets/burning-template.png',
+    alt: 'Burning Template',
     position: { x: 100, y: 100 }
   }, {
-    path: 'terrain/barrier-2.png',
-    alt: 'Barrier 2',
+    path: 'widgets/cover-template.png',
+    alt: 'Cover Template',
     position: { x: 200, y: 100 }
   }, {
-    path: 'terrain/barrier-3.png',
-    alt: 'Barrier 3',
+    path: 'widgets/poison-template.png',
+    alt: 'Poison Template',
     position: { x: 300, y: 100 }
   }, {
-    path: 'terrain/barrier-4.png',
-    alt: 'Barrier 4',
+    path: 'widgets/rough-ground-template.png',
+    alt: 'Rough Ground Template',
     position: { x: 400, y: 100 }
   }];
 

@@ -1,4 +1,4 @@
-import { Component, input, signal, effect } from '@angular/core';
+import { Component, input, signal } from '@angular/core';
 import { Tocken, TockenComponent } from "./tocken/tocken";
 
 @Component({
