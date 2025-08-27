@@ -3,9 +3,10 @@ import http from 'http';
 import path from 'path'; 
 import { Server as SocketIOServer } from 'socket.io';
 
-interface Position {
-  x: number;
-  y: number;
+interface ServiceTocken {
+  alt: string;
+  path: string;
+  position: { x: number; y: number };
 }
 
 interface MovePayload {
@@ -26,17 +27,26 @@ const io = new SocketIOServer(server, {
   }
 });
 
-let positions: Record<string, Position> = {};
+let positions: Record<string, ServiceTocken> = {};
 
 app.use(express.static('src'));
 
 io.on('connection', (socket: import('socket.io').Socket) => {
   console.log('A user connected:', socket.id);
-  socket.emit('init', positions as Record<string, Position>);
+  socket.emit('init', positions as Record<string, ServiceTocken>);
+
+  socket.on('add', ({ id, alt, path, position }) => {
+    if (!positions[id]) {
+      positions[id] = { alt, path, position };
+      socket.broadcast.emit('add', id, positions[id]);
+    }
+  });
 
   socket.on('move', ({ id, x, y }: MovePayload) => {
-    positions[id] = { x, y };
-    socket.broadcast.emit('move', { id, x, y });
+    if (positions[id]) {
+      positions[id].position = { x, y };
+      socket.broadcast.emit('move', { id, x, y });
+    }
   });
 
   socket.on('disconnect', () => {

@@ -2,6 +2,8 @@
     position: absolute;
     cursor: move;
     touch-action: none;
+    max-width: 288px;
+    max-height: 288px;
 }
 
 .tocken img {

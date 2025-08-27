@@ -3,5 +3,13 @@
   @if (isAddTockenVisible()) {
     <app-addTocken (visibility)="isAddTockenVisible.set($event)" (retrivingTockens)="onRetrivingTockens($event)" />
   }
-  <app-pitch [tockens]="tockens()" />
+  <div class='screen'>
+    <img [src]='pitch().path' class='pitch' [alt]='pitch().alt'/>
+    @for (tocken of tockens(); track $index) {
+      <app-tocken [id]="$index" [tocken]='tocken'></app-tocken>
+    }
+  </div>
+  @if (selected() != -1) {
+  <app-action-bar [tocken]="tockens()[selected()]" />
+  }
 </div>

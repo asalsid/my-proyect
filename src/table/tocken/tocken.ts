@@ -1,5 +1,5 @@
 import { Component, effect, input, signal } from '@angular/core';
-import { SocketService } from '../../../socket.service';
+import { SocketService } from '../../socket.service';
 import { NgStyle } from '@angular/common';
 
 export interface Tocken {
@@ -30,9 +30,9 @@ export class TockenComponent {
   constructor(private socket: SocketService) {
     effect(() => {
       const pos = this.socket.positions()[this.id()];
-      if (pos && pos.x !== 0 && pos.y !== 0) {
-        this.x.set(pos.x);
-        this.y.set(pos.y);
+      if (pos && pos.position) {
+        this.x.set(pos.position.x);
+        this.y.set(pos.position.y);
       } else if (this.tocken() && this.tocken().position) {
         this.x.set(this.tocken().position.x);
         this.y.set(this.tocken().position.y);
