@@ -1,15 +1,15 @@
 <div class="main">
-  <app-menu (isAddTockenVisible)="isAddTockenVisible.set($event)" />
+  <app-menu class="menu" (isAddTockenVisible)="isAddTockenVisible.set($event)" />
   @if (isAddTockenVisible()) {
-    <app-addTocken (visibility)="isAddTockenVisible.set($event)" (retrivingTockens)="onRetrivingTockens($event)" />
+    <app-addTocken class="addTocken" (visibility)="isAddTockenVisible.set($event)" (retrivingTockens)="onRetrivingTockens($event)" />
   }
   <div class='screen'>
-    <img [src]='pitch().path' class='pitch' [alt]='pitch().alt'/>
+    <img class='pitch' [src]='pitch().path' [alt]='pitch().alt'/>
     @for (tocken of tockens(); track $index) {
-      <app-tocken [id]="$index" [tocken]='tocken'></app-tocken>
+      <app-tocken class="tocken" [id]="$index" [tocken]='tocken' (selected)="selected.set($index)"></app-tocken>
     }
   </div>
   @if (selected() != -1) {
-  <app-action-bar [tocken]="tockens()[selected()]" />
+    <app-action-bar class="action-bar" [tocken]="tockens()[selected()]" />
   }
 </div>

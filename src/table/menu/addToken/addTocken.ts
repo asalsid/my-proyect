@@ -1,6 +1,6 @@
 import { Component, output, signal } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
-import { Tocken } from '../../pitch/tocken/tocken';
+import { Tocken } from '../../tocken/tocken';
 
 @Component({
   selector: 'app-addTocken',

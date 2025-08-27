@@ -1,4 +1,4 @@
-import { Component, signal, effect } from '@angular/core';
+import { Component, signal, effect, input } from '@angular/core';
 import { Menu } from './menu/menu';
 import { AddTocken } from './menu/addToken/addTocken';
 import { Tocken, TockenComponent } from './tocken/tocken';

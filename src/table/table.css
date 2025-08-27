@@ -14,14 +14,18 @@
   z-index: 1;
 }
 
-.app-tocken {
+.tocken {
   z-index: 2;
 }
 
-.app-menu {
+.menu {
   z-index: 3;
 }
 
-.app-action-bar {
+.addTocken {
+  z-index: 4;
+}
+
+.action-bar {
   z-index: 3;
 }

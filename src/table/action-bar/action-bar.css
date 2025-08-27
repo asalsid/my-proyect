@@ -1,19 +1,15 @@
-.side-menu {
+.action-bar {
   position: fixed;
+  top: 0;
+  right: 0;
   height: 100dvh;
   width: 220px;
   background: #222;
   color: #fff;
-  transition: width 0.3s;
-  z-index: 1000;
   overflow-x: hidden;
 }
 
-.side-menu.open {
-  width: 220px;
-}
-
-.menu-content {
+.bar-content {
   margin-top: 50px;
   display: flex;
   flex-direction: column;
@@ -21,7 +17,7 @@
   padding: 0 20px;
 }
 
-.menu-row {
+.bar-row {
   padding: 8px 0;
   border-bottom: 1px solid #333;
 }

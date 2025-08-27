@@ -1,8 +1,8 @@
-<div class="side-menu" [class.open]="isOpen()">
-    <div class="menu-content">
+<div class="action-bar">
+    <div class="bar-content">
         @for (value of values(); track $index) {
-            <div class="menu-row" (click)="value.accion()">
-                {{value.icono}} {{isOpen() ? value.nombre : ''}}
+            <div class="bar-row" (click)="value.accion()">
+                {{value.icono}} {{value.nombre}}
             </div>
         }
     </div>

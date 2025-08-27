@@ -1,4 +1,4 @@
-import { Component, effect, input, signal } from '@angular/core';
+import { Component, effect, input, output, signal } from '@angular/core';
 import { SocketService } from '../../socket.service';
 import { NgStyle } from '@angular/common';
 
@@ -23,8 +23,9 @@ export class TockenComponent {
   });
   x = signal(0);
   y = signal(0);
-
   dragging = signal(false);
+  selected = output();
+
   private offset = { x: 0, y: 0 };
 
   constructor(private socket: SocketService) {
@@ -41,6 +42,7 @@ export class TockenComponent {
   }
 
   startDrag(event: MouseEvent) {
+    this.selected.emit();
     this.dragging.set(true);
     this.offset.x = event.clientX - this.x();
     this.offset.y = event.clientY - this.y();
